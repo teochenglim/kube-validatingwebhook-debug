@@ -8,7 +8,6 @@ import (
 
 	"github.com/golang/glog"
 	"k8s.io/api/admission/v1beta1"
-	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -45,15 +44,6 @@ func (gs *VWHServerHandler) serve(w http.ResponseWriter, r *http.Request) {
 	raw := arRequest.Request.Object.Raw
 	glog.Infof("Raw Object: %s", raw)
 
-	pod := v1.Pod{}
-	if err := json.Unmarshal(raw, &pod); err != nil {
-		glog.Error("error deserializing pod")
-		return
-	}
-	if pod.Name == "smooth-app" {
-		return
-	}
-
 	arResponse := v1beta1.AdmissionReview{
 		Response: &v1beta1.AdmissionResponse{
 			Allowed: true,
@@ -75,5 +65,5 @@ func (gs *VWHServerHandler) serve(w http.ResponseWriter, r *http.Request) {
 }
 
 func (gs *VWHServerHandler) status(w http.ResponseWriter, r *http.Request) {
-  w.Write([]byte("OK"))
+	w.Write([]byte("OK"))
 }
