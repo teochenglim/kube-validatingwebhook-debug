@@ -1,4 +1,4 @@
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: vwh-debug
@@ -6,6 +6,8 @@ metadata:
     app: vwh-debug
 webhooks:
 - name: vwh-debug.teochenglim.me
+  admissionReviewVersions: ["v1", "v1beta1"]
+  sideEffects: NoneOnDryRun
   failurePolicy: Ignore
   timeoutSeconds: 1
   clientConfig:
@@ -15,8 +17,44 @@ webhooks:
       path: "/validate"
     caBundle: ${CA_BUNDLE}
   rules:
-  - operations: ["CREATE", "UPDATE"]
-    apiGroups: [""]
-    apiVersions: ["v1"]
-    # resources: ["pods"]
-    resources: ["*"]
+  ## https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/
+  ## operations - lists one or more operations to match. 
+  ##              Can be "CREATE", "UPDATE", "DELETE", "CONNECT", or "*" to match all.
+  ## apiGroups - lists one or more API groups to match. "" is the core API group. "*" matches all API
+  ## apiVersions - lists one or more API versions to match. "*" matches all API versions.
+  ## resources - lists one or more resources to match.
+  ##             "*" matches all resources, but not subresources.
+  ##             "*/*" matches all resources and subresources.
+  ##             "pods/*" matches all subresources of pods.
+  ##             "*/status" matches all status subresources.
+  ## scope - specifies a scope to match. Valid values are "Cluster", "Namespaced", and "*". 
+  ##         Subresources match the scope of their parent resource. Default is "*".
+  ##
+  ## Lists updates to the aws-auth ConfigMap:
+  - operations: ["CREATE", "UPDATE", "DELETE"]
+    apiGroups: ["*"]
+    apiVersions: ["*"]
+    resources: ["configmaps"]
+  ## Lists creation of new or changes to validation webhooks:
+  - operations: ["CREATE", "UPDATE", "DELETE"]
+    apiGroups: ["*"]
+    apiVersions: ["*"]
+    resources: ["validatingwebhookconfigurations"]
+  ## Lists create, update, delete operations to Roles:
+  ## Lists create, update, delete operations to RoleBindings:
+  - operations: ["CREATE", "UPDATE", "DELETE"]
+    apiGroups: ["*"]
+    apiVersions: ["*"]
+    resources: ["roles", "rolebindings"]
+  ## Lists create, update, delete operations to ClusterRoles:
+  ## Lists create, update, delete operations to ClusterRoleBindings:
+  - operations: ["CREATE", "UPDATE", "DELETE"]
+    apiGroups: ["*"]
+    apiVersions: ["*"]
+    resources: ["clusterroles", "clusterrolebindings"]
+  ## Plots unauthorized read operations against Secrets:
+  - operations: ["CREATE", "UPDATE", "DELETE"]
+    apiGroups: ["*"]
+    apiVersions: ["*"]
+    resources: ["secrets"]
+  ## List of failed anonymous requests:

@@ -12,15 +12,15 @@ services. This requires permissions to create and approve CSR. See
 https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster for
 detailed explanation and additional instructions.
 
-The server key/cert k8s CA cert are stored in a k8s secret.
+The server key/cert k8s CA cert are stored in a k8s SECRET.
 
 usage: ${0} [OPTIONS]
 
 The following flags are required.
 
-       --service          Service name of webhook.
-       --namespace        Namespace where webhook service and secret reside.
-       --secret           Secret name for CA certificate and server certificate/key pair.
+       --service          service name of webhook.
+       --namespace        namespace where webhook service and SECRET reside.
+       --secret           secret name for CA certificate and server certificate/key pair.
 EOF
     exit 1
 }
@@ -28,15 +28,15 @@ EOF
 while [[ $# -gt 0 ]]; do
     case ${1} in
         --service)
-            service="$2"
+            SERVICE="$2"
             shift
             ;;
         --secret)
-            secret="$2"
+            SECRET="$2"
             shift
             ;;
         --namespace)
-            namespace="$2"
+            NAMESPACE="$2"
             shift
             ;;
         *)
@@ -46,20 +46,21 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-[ -z "${service}" ] && service=vwh-debug
-[ -z "${secret}" ] && secret=vwh-debug
-[ -z "${namespace}" ] && namespace=default
+[ -z "${SERVICE}" ] && SERVICE=vwh-debug
+[ -z "${SECRET}" ] && SECRET=vwh-debug
+[ -z "${NAMESPACE}" ] && NAMESPACE=default
 
 if [ ! -x "$(command -v openssl)" ]; then
     echo "openssl not found"
     exit 1
 fi
 
-csrName=${service}.${namespace}
-tmpdir=$(mktemp -d)
+export csrName=${SERVICE}.${NAMESPACE}
+# tmpdir=$(mktemp -d)
+tmpdir=./temp
 echo "creating certs in tmpdir ${tmpdir} "
 
-cat <<EOF >> "${tmpdir}"/csr.conf
+cat <<EOF > "${tmpdir}"/csr.conf
 [req]
 req_extensions = v3_req
 distinguished_name = req_distinguished_name
@@ -70,13 +71,35 @@ keyUsage = nonRepudiation, digitalSignature, keyEncipherment
 extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = ${service}
-DNS.2 = ${service}.${namespace}
-DNS.3 = ${service}.${namespace}.svc
+DNS.1 = ${SERVICE}
+DNS.2 = ${SERVICE}.${NAMESPACE}
+DNS.3 = ${SERVICE}.${NAMESPACE}.svc
 EOF
 
+cat <<EOF > "${tmpdir}"/csr.conf
+[ req ]
+distinguished_name = dn
+req_extensions = req_ext
+
+[ dn ]
+commonName = ${ENDPOINT}
+
+[ req_ext ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = ${SERVICE}
+DNS.2 = ${SERVICE}.${NAMESPACE}
+DNS.3 = ${SERVICE}.${NAMESPACE}.svc
+DNS.4 = ${SERVICE}.${NAMESPACE}.svc.cluster.local
+EOF
+
+
 openssl genrsa -out "${tmpdir}"/server-key.pem 2048
-openssl req -new -key "${tmpdir}"/server-key.pem -subj "/CN=${service}.${namespace}.svc" -out "${tmpdir}"/server.csr -config "${tmpdir}"/csr.conf
+openssl req -new -key "${tmpdir}"/server-key.pem -subj "/CN=${SERVICE}.${NAMESPACE}.svc" -out "${tmpdir}"/server.csr -config "${tmpdir}"/csr.conf
 
 # clean-up any previously created CSR for our service. Ignore errors if not present.
 kubectl delete csr ${csrName} 2>/dev/null || true
@@ -120,12 +143,22 @@ if [[ ${serverCert} == '' ]]; then
     echo "ERROR: After approving csr ${csrName}, the signed certificate did not appear on the resource. Giving up after 10 attempts." >&2
     exit 1
 fi
-echo "${serverCert}" | openssl base64 -d -A -out "${tmpdir}"/server-cert.pem
+echo "${serverCert}" | base64 -d > "${tmpdir}"/server-cert.pem
 
 
 # create the secret with CA cert and server cert/key
-kubectl create secret generic ${secret} \
+kubectl create secret generic ${SECRET} \
         --from-file=key.pem="${tmpdir}"/server-key.pem \
         --from-file=cert.pem="${tmpdir}"/server-cert.pem \
-        --dry-run -o yaml |
-    kubectl -n ${namespace} apply -f -
+        --dry-run=client -o yaml |
+    kubectl -n ${NAMESPACE} apply -f -
+
+cat deploy/validatingwebhook.yaml.in | \
+    deploy/webhook-patch-ca-bundle.sh > \
+    deploy/validatingwebhook.yaml
+cat deploy/deployment.yaml.in | \
+    deploy/webhook-patch-ca-bundle.sh > \
+    deploy/deployment.yaml
+cat deploy/service.yaml.in | \
+    deploy/webhook-patch-ca-bundle.sh > \
+    deploy/service.yaml

@@ -1,0 +1,18 @@
+make: Entering directory `/Users/chenglim.teo/opensource/kube-validatingwebhook-debug'
+echo "Run go fmt..."
+echo "Runing the golangci-lint..."
+echo "Running the tests for k8s-vwh-debug..."
+go test "-v" ./...
+echo "Building the k8s-vwh-debug binary..."
+CGO_ENABLED=0 go build -o build/_output/bin/k8s-vwh-debug ./cmd/
+echo "Building the k8s-vwh-debug binary for Docker (linux)..."
+GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o build/_output/linux/bin/k8s-vwh-debug ./cmd/
+echo "Building the docker image: docker.io/teochenglim/k8s-vwh-debug:v20220805-abdc773-dirty..."
+docker build -t docker.io/teochenglim/k8s-vwh-debug:v20220805-abdc773-dirty -f build/Dockerfile .
+ 
+echo "Pushing the docker image for docker.io/teochenglim/k8s-vwh-debug:v20220805-abdc773-dirty and docker.io/teochenglim/k8s-vwh-debug:latest..."
+docker tag docker.io/teochenglim/k8s-vwh-debug:v20220805-abdc773-dirty docker.io/teochenglim/k8s-vwh-debug:latest
+docker push docker.io/teochenglim/k8s-vwh-debug:v20220805-abdc773-dirty
+docker push docker.io/teochenglim/k8s-vwh-debug:latest
+make: Leaving directory `/Users/chenglim.teo/opensource/kube-validatingwebhook-debug'
+ 

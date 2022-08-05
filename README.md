@@ -22,39 +22,21 @@ $ kubectl get ns/${NAMESPACE}
 
 ```
 $ ./deploy/webhook-create-signed-cert.sh
-### custom name if you like
-$ ./deploy/webhook-create-signed-cert.sh \
-    --service vwh-debug \
-    --secret vwh-debug \
-    --namespace default
+
 ### verify secret is created with data.'cert.pem' and data.'key.pem'
 $ kubectl get secret/vwh-debug -o yaml
 ```
 
-3. Patch the `ValidatingWebhookConfiguration` by set `caBundle` with correct value from Kubernetes cluster:
-
-```
-$ cat deploy/validatingwebhook.yaml.in | \
-    deploy/webhook-patch-ca-bundle.sh > \
-    deploy/validatingwebhook.yaml
-$ cat deploy/deployment.yaml.in | \
-    deploy/webhook-patch-ca-bundle.sh > \
-    deploy/deployment.yaml
-$ cat deploy/service.yaml.in | \
-    deploy/webhook-patch-ca-bundle.sh > \
-    deploy/service.yaml
-```
-
-4. Deploy resources:
+3. Deploy resources:
 
 ```
 ### create the deployment
-$ kubectl create -f deploy/
+$ kubectl apply -f deploy/
 ### delete the deployment
 $ kubectl delete -f deploy/
 ```
 
-5. create a test secrets
+4. create a test secrets
 
 ```shell
 $ kubectl create secret generic prod-db-secret --from-literal=username=produser --from-literal=password=Y4nys7f11
@@ -62,7 +44,7 @@ secret/prod-db-secret created
 
 ```
 
-6. Verify the secret is at debug
+5. Verify the secret is at debug
 
 ```shell
 $ kubectl get pod

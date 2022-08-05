@@ -1,0 +1,422 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Fri Aug  5 09:21:03 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+LUAJIT_LIB = /usr/local/Cellar/luajit/2.0.5/lib/
+# environment
+LC_CTYPE = UTF-8
+# makefile (from `Makefile', line 17)
+TESTARGS_DEFAULT := "-v"
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+CPPFLAGS = -I/usr/local/opt/openssl/include -I/usr/local/opt/zlib/include -I/usr/local/opt/libpcap/include  -I/usr/local/opt/libpq/include -I/usr/local/opt/libxml2/include -I/usr/local/opt/ruby/include -I/usr/local/opt/curl/include -I/usr/local/opt/mysql-client/include -I/usr/local/opt/openresty-openssl@1.1/include -I/usr/local/opt/libarchive/include -I/usr/local/opt/sqlite/include
+# environment
+BASH_SILENCE_DEPRECATION_WARNING = 1
+# environment
+PLENV_SHELL = bash
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/chenglim.teo/opensource/kube-validatingwebhook-debug
+# makefile
+SHELL = /bin/sh
+# makefile (from `Makefile', line 29)
+XARGS_FLAGS = 
+# makefile (from `Makefile', line 12)
+BASE_DIR := kube-validatingwebhook-debug
+# environment
+ 
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from `Makefile', line 19)
+DEST := /Users/chenglim.teo/go/src/github.com/teochenglim/kube-validatingwebhook-debug
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 5)
+IMAGE_NAME = k8s-vwh-debug
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+KREW_ROOT = /Users/chenglim.teo/.krew
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+COWPATH = /usr/local/Cellar/cowsay/3.04/share/cows:/Users/chenglim.teo/cows
+# environment
+VSCODE_CWD = /Users/chenglim.teo/opensource/kube-validatingwebhook-debug
+# environment
+GOPROXY = https://athens.mgmt.mmhprod.com,https://proxy.golang.org,direct
+# environment
+PATH = /usr/local/opt/go/libexec/bin:/Users/chenglim.teo/.krew/bin:/usr/local/opt/python@3.8/bin:/Users/chenglim.teo/.pyenv/shims:/opt/local/bin:/opt/local/sbin:/usr/local/opt/openssl@1.1/bin:/Users/chenglim.teo/.plenv/shims:/Users/chenglim.teo/.krew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/usr/local/sbin:/usr/local/bin::/tools:/Users/chenglim.teo/Library/Android/sdk/tools/bin:/Users/chenglim.teo/Library/Android/sdk/platform-tools:/Users/chenglim.teo/Library/Android/sdk/emulator:/usr/local/opt/mysql-client/bin/:/Users/chenglim.teo/go/bin:/usr/local/sbin/:/usr/local/opt/libpcap/bin:/usr/local/opt/libpq/bin:/usr/local/opt/libxml2/bin:/Users/chenglim.teo/scripts:/opt/td-agent/embedded/bin:/Users/chenglim.teo/.rd/bin
+# environment
+ITERM_PREV_PS1 = \[]133;D;$?]133;A\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;31m\]$(parse_git_branch)\[\033[0m\]$ \[]133;B\]
+# environment
+GOROOT = /usr/local/opt/go/libexec
+# environment
+LSCOLORS = GxFxCxDxBxegedabagaced
+# environment
+LIBRARY_PATH = /usr/local/opt/openssl@/lib
+# environment
+CPATH = /usr/local/opt/openssl/include
+# environment
+GOPATH = /Users/chenglim.teo/go
+# environment
+LaunchInstanceID = CD6D0736-8C4C-43F5-B6F5-F0DA26C93940
+# makefile (from `Makefile', line 20)
+IMAGE_TAG = $(shell date +v%Y%m%d)-$(shell git describe --match=$(git rev-parse --short=8 HEAD) --tags --always --dirty)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+LDFLAGS = -L/usr/local/opt/openssl/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/libffi/lib -L/usr/local/opt/libpcap/lib -L/usr/local/opt/libpq/lib -L/usr/local/opt/libxml2/lib -L/usr/local/opt/ruby/lib -L/usr/local/opt/curl/lib -L/usr/local/opt/mysql-client/lib -L/usr/local/opt/openresty-openssl/lib -L/usr/local/opt/libarchive/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/python@3.8/lib
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.DnHQg0V906/Listeners
+# automatic
+%F = $(notdir $%)
+# makefile (from `Makefile', line 9)
+GIT_HOST = github.com/teochenglim
+# environment
+ITERM_ORIG_PS1 = \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;31m\]$(parse_git_branch)\[\033[0m\]$ 
+# environment
+HISTFILESIZE = 500000
+# makefile (from `Makefile', line 11)
+PWD := /Users/chenglim.teo/opensource/kube-validatingwebhook-debug
+# makefile (from `Makefile', line 23)
+LOCAL_OS := Darwin
+# environment
+PKG_CONFIG_PATH = /usr/local/opt/openssl/lib/pkgconfig:/usr/local/opt/libarchive/lib/pkgconfig:/usr/local/opt/curl/lib/pkgconfig
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+GOMODCACHE = /Users/chenglim.teo/go/pkg/mod
+# environment
+HOME = /Users/chenglim.teo
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/chenglim.teo/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+# environment
+LOGNAME = chenglim.teo
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+LC_TERMINAL = iTerm2
+# makefile (from `Makefile', line 4)
+IMAGE_REPO = docker.io/teochenglim
+# environment
+SHLVL = 3
+# environment
+AWS_PROFILE = thunes-prod
+# environment
+JAVA_HOME = /Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = chenglim.teo
+# makefile (from `Makefile', line 15)
+GOPATH_DEFAULT := /Users/chenglim.teo/opensource/kube-validatingwebhook-debug/.go
+# makefile
+.DEFAULT_GOAL := all
+# default
+MAKECMDGOALS := all
+# environment
+TERM_SESSION_ID = w1t2p0:A76BB44C-686A-4EF8-B74F-CBD3D3F18F15
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 28)
+TARGET_OS = darwin
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# environment
+TERM_PROGRAM = iTerm.app
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/jk/22y4cnjs1pz3qf0zw9j4l4rh0000gq/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/chenglim.teo/Library/Application Support/Code/1.69.2-main.sock
+# environment
+MallocNanoZone = 0
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+TERM_PROGRAM_VERSION = 3.4.16
+# environment
+NVM_DIR = /Users/chenglim.teo/.nvm
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.39377343.39377349.BCA0ABCF-1B1F-44F2-B281-3A26E7B6FF3B
+# environment
+LC_TERMINAL_VERSION = 3.4.16
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# makefile (from `Makefile', line 18)
+TESTARGS = $(TESTARGS_DEFAULT)
+# environment
+ITERM_SESSION_ID = w1t2p0:A76BB44C-686A-4EF8-B74F-CBD3D3F18F15
+# environment
+COLORFGBG = 7;0
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F7:0x0:0x64
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# environment
+define PROMPT_COMMAND
+__bp_precmd_invoke_cmd
+setTabTitle;
+__iterm2_prompt_command
+__bp_interactive_mode
+endef
+# automatic
+<F = $(notdir $<)
+# environment
+ITERM_PROFILE = Default
+# environment
+ANDROID_SDK_ROOT = /Users/chenglim.teo/Library/Android/sdk
+# environment
+LC_ALL = C
+# environment
+LUAJIT_INC = /usr/local/Cellar/luajit/2.0.5/include/luajit-2.0/
+# environment
+SECURITYSESSIONID = 186a6
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+HISTSIZE = 50000
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+CLICOLOR = 1
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_PID = 1784
+# variable set hash-table stats:
+# Load=111/1024=11%, Rehash=0, Collisions=8/158=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777223, inode 41375343): 13 files, no impossibilities.
+
+# 13 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+build-linux:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 73):
+	@echo "Building the $(IMAGE_NAME) binary for Docker (linux)..."
+	@GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o build/_output/linux/bin/$(IMAGE_NAME) ./cmd/
+	
+
+all: fmt lint test build image
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+
+.PHONY: all fmt lint check test build image clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-08-05 08:51:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+push-image: build-image
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 87):
+	@echo "Pushing the docker image for $(IMAGE_REPO)/$(IMAGE_NAME):$(IMAGE_TAG) and $(IMAGE_REPO)/$(IMAGE_NAME):latest..."
+	@docker tag $(IMAGE_REPO)/$(IMAGE_NAME):$(IMAGE_TAG) $(IMAGE_REPO)/$(IMAGE_NAME):latest
+	@docker push $(IMAGE_REPO)/$(IMAGE_NAME):$(IMAGE_TAG)
+	@docker push $(IMAGE_REPO)/$(IMAGE_NAME):latest
+	
+
+test:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 61):
+	@echo "Running the tests for $(IMAGE_NAME)..."
+	@go test $(TESTARGS) ./...
+	
+
+build:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 69):
+	@echo "Building the $(IMAGE_NAME) binary..."
+	@CGO_ENABLED=0 go build -o build/_output/bin/$(IMAGE_NAME) ./cmd/
+	
+
+build-image: build-linux
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 83):
+	@echo "Building the docker image: $(IMAGE_REPO)/$(IMAGE_NAME):$(IMAGE_TAG)..."
+	@docker build -t $(IMAGE_REPO)/$(IMAGE_NAME):$(IMAGE_TAG) -f build/Dockerfile .
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+image: build-image push-image
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 96):
+	@rm -rf build/_output
+	
+
+fmt:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := fmt
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 47):
+	@echo "Run go fmt..."
+	
+
+lint:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 54):
+	@echo "Runing the golangci-lint..."
+	
+
+check:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=15/1024=1%, Rehash=0, Collisions=0/46=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Fri Aug  5 09:21:03 2022
+
+ 
