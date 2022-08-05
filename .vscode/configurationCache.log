@@ -1,1 +1,0 @@
-{"buildTargets":["all","build","build-image","build-linux","check","clean","fmt","image","lint","push-image","test"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
